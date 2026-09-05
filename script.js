@@ -4,6 +4,7 @@ const form = document.getElementById("add-form");
 const input = document.getElementById("task-input");
 const list = document.getElementById("task-list");
 const emptyMessage = document.getElementById("empty-message");
+const taskCounter = document.getElementById("task-counter");
 
 let tasks = loadTasks();
 
@@ -23,6 +24,7 @@ function saveTasks() {
 function render() {
   list.innerHTML = "";
   emptyMessage.style.display = tasks.length === 0 ? "block" : "none";
+  renderTaskCounter();
 
   tasks.forEach((task, index) => {
     const li = document.createElement("li");
@@ -41,6 +43,15 @@ function render() {
     li.appendChild(removeBtn);
     list.appendChild(li);
   });
+}
+
+function renderTaskCounter() {
+  if (tasks.length === 0) {
+    taskCounter.textContent = "";
+    return;
+  }
+  const remaining = tasks.filter((task) => !task.done).length;
+  taskCounter.textContent = `${remaining} of ${tasks.length} task${tasks.length === 1 ? "" : "s"} remaining`;
 }
 
 function addTask(text) {

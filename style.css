@@ -114,3 +114,10 @@ h1 {
   color: var(--muted);
   margin: 0;
 }
+
+#task-counter {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 1rem 0 0;
+}
